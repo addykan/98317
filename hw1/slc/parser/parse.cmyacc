@@ -1,0 +1,49 @@
+name SimpleLCParseFun
+
+terminal IDENT of string
+
+terminal LPAREN
+terminal RPAREN
+
+terminal ARROW precr 11
+terminal TIMES precl 13
+
+terminal LAMBDA
+terminal DARROW
+terminal COLON
+terminal COMMA
+terminal FST
+terminal SND
+terminal UNIT
+terminal UNITTY
+terminal BOOL
+terminal TRUE
+terminal FALSE
+terminal IF
+terminal THEN
+terminal ELSE
+
+nonterminal Typ : typ =
+  UNITTY => unitty
+  BOOL => bool
+  LPAREN 1:Typ RPAREN => id_typ
+  1:Typ ARROW 2:Typ => Arrow
+  1:Typ TIMES 2:Typ => Times
+
+nonterminal Exp : exp =
+  1:ExpOne => id_exp
+  1:Exp 2:ExpOne => Apply
+
+nonterminal ExpOne : exp =
+  UNIT => unit
+  TRUE => tt
+  FALSE => ff
+  1:IDENT => Variable
+  LPAREN 1:Exp RPAREN => id_exp
+  LAMBDA LPAREN 1:IDENT COLON 2:Typ RPAREN DARROW 3:Exp => lambda
+  LPAREN 1:Exp COMMA 2:Exp RPAREN => Tuple
+  FST 1:Exp => First
+  SND 1:Exp => Second
+  IF 1:Exp THEN 2:Exp ELSE 3:Exp => IfThenElse
+
+start Exp

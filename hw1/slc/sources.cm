@@ -1,0 +1,12 @@
+Library
+  structure Parser
+  structure SimpleLC
+is
+  $/cmlib.cm
+
+  parser/lexer.sml
+  parser/lex.cmlex.sml
+  parser/parser.sml
+  parser/parse.cmyacc.sml
+
+  SimpleLC.sml

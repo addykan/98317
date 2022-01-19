@@ -1,0 +1,9 @@
+Library
+  structure SimpleLC_Checker
+  structure Top
+is
+  $/cmlib.cm
+  $slc/sources.cm
+
+  SimpleLC_Checker.sml
+  Top.sml

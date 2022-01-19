@@ -1,0 +1,34 @@
+name SimpleLCLexFun
+alphabet 128
+
+set alpha = (range 'a 'z 'A 'Z)
+set digit = (range '0 '9)
+set alphanumeric = (| alpha digit '_ '')
+set white = (| 32 9 10 12 13)  /* space, tab, lf, ff, cr */
+
+function lexmain : t =
+    eos => eof
+    (+ white) => skip
+
+    '(      => lparen
+    ')      => rparen
+    "->"    => arrow
+    '*      => times
+    "fn"    => lambda
+    "=>"    => darrow
+    ':      => colon
+    ',      => comma
+    "fst"   => fst
+    "snd"   => snd
+    "if"    => if_
+    "then"  => then_
+    "else"  => else_
+    "unit"  => unitty
+    "bool"  => bool
+    "()"    => unit
+    "true"  => true_
+    "false" => false_
+
+    (seq alpha (* alphanumeric)) => ident
+
+    epsilon => error

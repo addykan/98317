@@ -1,0 +1,9 @@
+Library
+  library(slc/sources.cm)
+  library(checker/sources.cm)
+is
+  slc/sources.cm (bind:(anchor:cmlib.cm value:cmlib))
+  checker/sources.cm (
+    bind:(anchor:cmlib.cm value:cmlib)
+    bind:(anchor:slc value:slc)
+  )
