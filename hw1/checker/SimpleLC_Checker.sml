@@ -25,16 +25,29 @@ structure SimpleLC_Checker :>
       | SLC.Unit => SLC.UnitTy (* a unit always has type unit! *)
       | SLC.True => SLC.Bool (* true always has type bool! *)
       | SLC.False => SLC.Bool (* false always has type bool! *)
-      | SLC.Tuple (e1, e2) => raise Fail "todo: what type does a tuple have?"
+      | SLC.Tuple (e1, e2) => SLC.Times (check_helper ctx e1, check_helper ctx e2) 
       | SLC.First e => (
           case check_helper ctx e of
             SLC.Times (t, _) => t
           | _ => raise TypeError
         ) (* when we have something like <a, b>.1, we get the type of a by recursively typecheck_helpering *)
-      | SLC.Second e => raise Fail "todo: what do we do for <a, b>.2?"
-      | SLC.IfThenElse (b,e1,e2) => raise Fail "todo: how do we typecheck_helper an if/then/else?"
-      | SLC.Lambda ((x, t), e) =>
-          raise Fail "todo: what's the type of λ(x:t).e?"
+      | SLC.Second e => (
+          case check_helper ctx e of
+            SLC.Times (_, t) => t
+          | _ => raise TypeError
+        )
+      | SLC.IfThenElse (b,e1,e2) => (
+          case check_helper ctx b of 
+            SLC.Bool => 
+              let
+                val e1Type = check_helper ctx e1
+                val e2Type = check_helper ctx e2
+              in
+                if e1Type = e2Type then e1Type else raise TypeError
+              end
+          | _ => raise TypeError
+        )
+      | SLC.Lambda ((x, t), e) => SLC.Arrow (t, check_helper (Ctx.insert ctx x t) e)
           (* hint: don't forget the context, as we discussed in lecture! *)
       | SLC.Apply (e1, e2) => (
           case check_helper ctx e1 of

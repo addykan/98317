@@ -1,0 +1,2 @@
+Skeleton 5
+d2f2ä¢Stream"ä¢Lexer"ad"Parser"h3aä¢Arg"h2egp1d"SimpleLC"f3ÿd"Int"ÿaä¢StreamWithPos"jh1aä¢Streamable"gp1d"StreamStreamable"gp1e"CoercedStreamable"ad"ParseMain"jh2aÿgp1ÿaÿ"gp1ÿ"gp1e"SimpleLCParseFun"
