@@ -1,0 +1,8 @@
+Library
+  signature ISOMORPHISMS
+  structure Isomorphisms
+is
+  $/basis.cm
+
+  isomorphisms.sig
+  isomorphisms.sml
