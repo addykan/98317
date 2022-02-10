@@ -11,14 +11,14 @@ structure Clogic : CLOGIC =
     type ('a,'b) IFF = ('a -> 'b) * ('b -> 'a)
 
     val easy = raise Fail "Unproven"
-    val andElim1 = raise Fail "Unproven"
-    val impTrans = raise Fail "Unproven"
-    val sameOR = raise Fail "Unproven"
-    val similarOR = raise Fail "Unproven"
+    val andElim1 = fn (a, b) => a
+    val impTrans = fn (aToB, bToC) => (fn x => bToC (aToB x))
+    val sameOR = fn Left a => a | Right b => b
+    val similarOR = fn (a, b) => b a
 
-    val doubleNegIntro = raise Fail "Unproven"
+    val doubleNegIntro = (fn y => (fn x => False) False)
     val fillIn = raise Fail "Unproven"
-    val concepts = raise Fail "Unproven"
+    val concepts = fn Left aNot => (fn a => b) | Right b => (fn a => b)
     val covariance = raise Fail "Unproven"
     val deMorgan = raise Fail "Unproven"
     val contrapositive' = raise Fail "Unproven"

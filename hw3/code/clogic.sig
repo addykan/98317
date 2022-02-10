@@ -12,11 +12,11 @@ signature CLOGIC =
     type ('a,'b) IFF = ('a -> 'b) * ('b -> 'a)
 
 
-    val easy : FALSE
-    val andElim1 : FALSE
-    val impTrans : FALSE
-    val sameOR : FALSE
-    val similarOR : FALSE
+    val easy : unit (* idk :/ *)
+    val andElim1 : ('a, 'b) AND -> 'a
+    val impTrans : (('a -> 'b), ('b -> 'c)) AND -> ('a -> 'c)
+    val sameOR : ('a, 'a) OR -> 'a
+    val similarOR : (('a, 'b) OR, ('a -> 'b)) AND -> 'b
 
     val doubleNegIntro  : 'a -> 'a NOT NOT
     val fillIn : ('a,'b) IFF -> ('a,'b) OR -> ('a,'b) AND
