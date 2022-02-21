@@ -1,0 +1,78 @@
+struct list {
+  int head;
+  struct list* tail;
+};
+
+struct list* nil() {
+  return NULL;
+}
+
+struct list* cons(int x, struct list* xs) {
+  struct list* node = alloc(struct list);
+  node->head = x;
+  node->tail = xs;
+  return node;
+}
+
+int sum_list(struct list* l) {
+  if (l is NULL)
+    return 0;
+
+  let { head = x; tail = xs; } = l;
+  return x + sum_list(xs);
+}
+
+// struct list* append(struct list* l1, struct list* l2) {
+//   TODO: uncomment and fill me in!
+// }
+
+// struct list* double(struct list* l) {
+//   TODO: uncomment and fill me in!
+// }
+
+struct pair {
+  struct list* l1;
+  struct list* l2;
+};
+
+void drop_list(struct list* l) {
+  if (l is NULL)
+    return;
+
+  let { head = x; tail = xs; } = l;
+  drop_list(xs);
+}
+
+struct pair* copy_list(struct list* l) {
+  struct pair* pair = alloc(struct pair);
+
+  if (l is NULL) {
+    pair->l1 = nil();
+    pair->l2 = nil();
+    return pair;
+  }
+
+  let {
+    head = x;
+    tail = xs;
+  }
+  = l;
+  let {
+    l1 = l1;
+    l2 = l2;
+  }
+  = copy_list(xs);
+
+  pair->l1 = cons(x, l1);
+  pair->l2 = cons(x, l2);
+  return pair;
+}
+
+// struct list* repeat(int n, struct list *l) {
+//   TODO: uncomment and fill me in!
+// }
+
+int main() {
+  struct list* l = cons(1, cons(2, cons(3, nil())));
+  return sum_list(l);
+}
