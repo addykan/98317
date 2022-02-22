@@ -22,13 +22,20 @@ int sum_list(struct list* l) {
   return x + sum_list(xs);
 }
 
-// struct list* append(struct list* l1, struct list* l2) {
-//   TODO: uncomment and fill me in!
-// }
+struct list* append(struct list* l1, struct list* l2) {
+  if (l1 is NULL)
+    return l2;
 
-// struct list* double(struct list* l) {
-//   TODO: uncomment and fill me in!
-// }
+  let {head = x; tail = xs; } = l1;
+  return cons(x, append(xs, l2));
+}
+
+struct list* double(struct list* l) {
+  if (l is NULL)
+    return NULL;
+  let {head = x; tail = xs; } = l;
+  return cons(x, cons(x, double(xs)));
+}
 
 struct pair {
   struct list* l1;
