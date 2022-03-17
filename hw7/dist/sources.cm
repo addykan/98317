@@ -1,0 +1,13 @@
+Library
+  signature CLASSICAL
+  structure Classical
+
+  signature TASKS
+  structure Tasks
+is
+  $/basis.cm
+
+  classical.sml
+
+  tasks.sml
+  submit.sml  (* <-- your code here! *)
