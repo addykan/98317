@@ -12,11 +12,11 @@ structure Tasks :> TASKS =
 
     (* Continuations *)
 
-    val sum = fn _ => raise Fail "TODO"
+    val sum = fn [] => (fn f => throw f []) | (x::xs) => (fn f => letcc (fn res => f (x + res)))
 
-    val any = fn _ => raise Fail "TODO"
+    val any = fn f => fn L => filter f L
 
-    val nth = fn _ => raise Fail "TODO"
+    val nth = fn (x::xs) => (fn 0 => x | n => nth xs (n-1) ) 
 
     val map = fn _ => raise Fail "TODO"
 
