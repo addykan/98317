@@ -1,0 +1,26 @@
+Library
+  signature MAPPABLE
+  signature MONAD
+
+  structure OptionMonad
+  structure ListMonad
+  structure LogMonad
+
+  functor MkMonad
+
+  structure ProbabilityMonad
+  functor ImperativeMonad
+is
+  $/basis.cm
+
+  MAPPABLE.sig
+  MONAD.sig
+
+  OptionMonad.sml
+  ListMonad.sml
+  LogMonad.sml
+
+  MkMonad.fun
+
+  ProbabilityMonad.sml
+  ImperativeMonad.fun
