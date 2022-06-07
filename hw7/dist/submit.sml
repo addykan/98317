@@ -18,9 +18,11 @@ structure Tasks :> TASKS =
 
     val nth = fn (x::xs) => (fn 0 => x | n => nth xs (n-1) ) 
 
-    val map = fn _ => raise Fail "TODO"
+    val map = fn f => (fn [] => [] | (x::xs) => f x :: map f xs)
 
-    val filter = fn _ => raise Fail "TODO"
+    val filter = fn f => fn k => (fn [] => k [] | (x::xs) => if f x 
+                                                             then (filter xs (fn res => k (x::res)))
+                                                             else filter xs (fn res => k res))
 
     (* Classical Logic *)
 

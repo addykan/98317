@@ -10,7 +10,7 @@ functor MkMonad (
     type 'a t = 'a t
 
     fun map (f : 'a -> 'b) (t : 'a t) : 'b t =
-      raise Fail "TODO"
+      f t
 
     val return = return
     val op >>= = op >>=

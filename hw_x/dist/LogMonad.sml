@@ -6,17 +6,32 @@ structure LogMonad :> MONAD where type 'a t = string * 'a =
     type 'a t = string * 'a
 
     fun map (f : 'a -> 'b) : 'a t -> 'b t =
-      raise Fail "TODO"
+      fn (x, v) => (x, f v)
 
     fun return (x : 'a) : 'a t =
-      raise Fail "TODO"
+      ("", x)
 
     fun (x : 'a t) >>= (f : 'a -> 'b t) : 'b t =
-      raise Fail "TODO"
+      let
+        val (s, v) = x
+        val (fStr, fRes) = f v
+      in
+        (s ^ fStr, fRes)
+      end
 
     fun (f : 'a -> 'b t) >=> (g : 'b -> 'c t) : 'a -> 'c t =
-      raise Fail "TODO"
+      fn x => 
+        let
+          val (s, fRes) = f x
+          val (gS, gRes) = g fRes
+        in
+          (s ^ gS, gRes)
+        end
 
     fun join (x : 'a t t) : 'a t =
-      raise Fail "TODO"
+      let
+        val (s1, (s2, v)) = x
+      in
+        (s1 ^ s2, v)
+      end
   end
